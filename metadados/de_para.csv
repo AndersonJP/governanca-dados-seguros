@@ -1,0 +1,29 @@
+sistema_origem;tabela_origem;coluna_origem;tipo_origem;tabela_destino;coluna_destino;tipo_destino;transformacao
+SISEG;TB_PROD;CD_PROD;TEXT;silver_produto;cd_produto;INTEGER;Conversão para inteiro
+SISEG;TB_PROD;DS_PROD;TEXT;silver_produto;ds_produto;TEXT;Cópia direta
+SISEG;TB_CORR;CD_CORR;TEXT;silver_corretor;cd_corretor;INTEGER;Conversão para inteiro
+SISEG;TB_CORR;NM_CORR;TEXT;silver_corretor;nm_corretor;TEXT;Cópia direta
+SISEG;TB_CORR;PC_COMS;TEXT;silver_corretor;pc_comissao;REAL;Conversão para decimal (0 a 1)
+SISEG;TB_APOL;NR_APOL;TEXT;silver_apolice;nr_apolice;TEXT;Cópia direta, com deduplicação por ROW_NUMBER mantendo a maior DT_CARGA
+SISEG;TB_APOL;CD_PROD;TEXT;silver_apolice;cd_produto;INTEGER;Conversão para inteiro
+SISEG;TB_APOL;CD_CORR;TEXT;silver_apolice;cd_corretor;INTEGER;Conversão para inteiro
+SISEG;TB_APOL;CD_SEGD;TEXT;silver_apolice;cd_segurado;TEXT;Cópia direta (dado pessoal: classificar como PESSOAL)
+SISEG;TB_APOL;DT_INI_VIG;TEXT;silver_apolice;dt_inicio_vigencia;DATE;Conversão para data
+SISEG;TB_APOL;DT_FIM_VIG;TEXT;silver_apolice;dt_fim_vigencia;DATE;Conversão para data
+SISEG;TB_APOL;VL_PRM_LIQ;TEXT;silver_apolice;vl_premio_liquido;REAL;Conversão para decimal
+SISEG;TB_APOL;ST_APOL;TEXT;silver_apolice;st_apolice;TEXT;Decodificação: A = ATIVA, C = CANCELADA
+SISEG;TB_APOL;DT_CANC;TEXT;silver_apolice;dt_cancelamento;DATE;Texto vazio vira NULL
+SISEG;TB_APOL;PC_COSS_CED;TEXT;silver_apolice;pc_cosseguro_cedido;REAL;Conversão para decimal (0 a 1)
+SISEG;TB_APOL;DT_CARGA;TEXT;silver_apolice;dt_carga;DATE;Conversão para data
+SISEG;TB_ENDS;NR_ENDS;TEXT;silver_endosso;nr_endosso;TEXT;Cópia direta
+SISEG;TB_ENDS;NR_APOL;TEXT;silver_endosso;nr_apolice;TEXT;Cópia direta
+SISEG;TB_ENDS;TP_ENDS;TEXT;silver_endosso;tp_endosso;TEXT;Decodificação: AUM = AUMENTO, RED = REDUCAO, CAN = CANCELAMENTO
+SISEG;TB_ENDS;DT_EMIS;TEXT;silver_endosso;dt_emissao;DATE;Conversão para data
+SISEG;TB_ENDS;VL_PRM_ENDS;TEXT;silver_endosso;vl_premio_endosso;REAL;Conversão para decimal
+SISEG;TB_SINI;NR_SINI;TEXT;silver_sinistro;nr_sinistro;TEXT;Cópia direta
+SISEG;TB_SINI;NR_APOL;TEXT;silver_sinistro;nr_apolice;TEXT;Cópia direta
+SISEG;TB_SINI;DT_OCOR;TEXT;silver_sinistro;dt_ocorrencia;DATE;Conversão para data
+SISEG;TB_SINI;DT_AVIS;TEXT;silver_sinistro;dt_aviso;DATE;Conversão para data
+SISEG;TB_SINI;VL_INDE;TEXT;silver_sinistro;vl_indenizacao_paga;REAL;Conversão para decimal
+SISEG;TB_SINI;VL_RESV;TEXT;silver_sinistro;vl_reserva_sinistro;REAL;Conversão para decimal
+SISEG;TB_SINI;ST_SINI;TEXT;silver_sinistro;st_sinistro;TEXT;Cópia direta

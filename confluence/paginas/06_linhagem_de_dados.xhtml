@@ -1,0 +1,33 @@
+<ac:structured-macro ac:name="info"><ac:rich-text-body><p>Caminho do dado desde o sistema de origem até o dashboard e o relatório regulatório. Exemplo: TB_SINI.VL_INDE + VL_RESV -&gt; silver_sinistro -&gt; fato_sinistro.vl_sinistro_retido -&gt; vw_sinistralidade_produto.pc_sinistralidade -&gt; Dashboard.</p></ac:rich-text-body></ac:structured-macro>
+<ac:structured-macro ac:name="toc"><ac:parameter ac:name="maxLevel">2</ac:parameter></ac:structured-macro>
+<h2>Fluxo tabela a tabela</h2><table><tbody>
+<tr><th>Origem</th><th>Destino</th><th>Camada do destino</th><th>O que acontece</th></tr>
+<tr><td>SISEG.TB_APOL</td><td>bronze_tb_apol</td><td>BRONZE</td><td>Cópia fiel da tabela de apólices</td></tr>
+<tr><td>SISEG.TB_ENDS</td><td>bronze_tb_ends</td><td>BRONZE</td><td>Cópia fiel da tabela de endossos</td></tr>
+<tr><td>SISEG.TB_SINI</td><td>bronze_tb_sini</td><td>BRONZE</td><td>Cópia fiel da tabela de sinistros</td></tr>
+<tr><td>SISEG.TB_PROD</td><td>bronze_tb_prod</td><td>BRONZE</td><td>Cópia fiel do cadastro de produtos</td></tr>
+<tr><td>SISEG.TB_CORR</td><td>bronze_tb_corr</td><td>BRONZE</td><td>Cópia fiel do cadastro de corretores</td></tr>
+<tr><td>bronze_tb_apol</td><td>silver_apolice</td><td>SILVER</td><td>De x Para + deduplicação</td></tr>
+<tr><td>bronze_tb_ends</td><td>silver_endosso</td><td>SILVER</td><td>De x Para</td></tr>
+<tr><td>bronze_tb_sini</td><td>silver_sinistro</td><td>SILVER</td><td>De x Para</td></tr>
+<tr><td>bronze_tb_prod</td><td>silver_produto</td><td>SILVER</td><td>De x Para</td></tr>
+<tr><td>bronze_tb_corr</td><td>silver_corretor</td><td>SILVER</td><td>De x Para</td></tr>
+<tr><td>silver_produto</td><td>dim_produto</td><td>GOLD</td><td>Dimensão produto</td></tr>
+<tr><td>silver_corretor</td><td>dim_corretor</td><td>GOLD</td><td>Dimensão corretor</td></tr>
+<tr><td>silver_apolice</td><td>fato_premio</td><td>GOLD</td><td>RN01 a RN05</td></tr>
+<tr><td>silver_endosso</td><td>fato_premio</td><td>GOLD</td><td>RN01 (aumento/redução)</td></tr>
+<tr><td>silver_corretor</td><td>fato_premio</td><td>GOLD</td><td>RN04 (% de comissão)</td></tr>
+<tr><td>silver_sinistro</td><td>fato_sinistro</td><td>GOLD</td><td>RN05, RN06, RN07</td></tr>
+<tr><td>silver_apolice</td><td>fato_sinistro</td><td>GOLD</td><td>Vigência e cosseguro da apólice</td></tr>
+<tr><td>fato_premio</td><td>vw_sinistralidade_produto</td><td>CONSUMO</td><td>RN06</td></tr>
+<tr><td>fato_sinistro</td><td>vw_sinistralidade_produto</td><td>CONSUMO</td><td>RN06 (apenas sinistros cobertos)</td></tr>
+<tr><td>dim_produto</td><td>vw_sinistralidade_produto</td><td>CONSUMO</td><td>Nome do produto</td></tr>
+<tr><td>fato_premio</td><td>vw_premio_mensal</td><td>CONSUMO</td><td>Evolução mensal (LAG, SUM OVER)</td></tr>
+<tr><td>fato_premio</td><td>vw_ranking_corretor</td><td>CONSUMO</td><td>Ranking comercial (RANK)</td></tr>
+<tr><td>dim_corretor</td><td>vw_ranking_corretor</td><td>CONSUMO</td><td>Nome do corretor</td></tr>
+<tr><td>vw_sinistralidade_produto</td><td>Dashboard de Sinistralidade</td><td>DASHBOARD</td><td>Uso: Atuária</td></tr>
+<tr><td>vw_premio_mensal</td><td>Dashboard de Sinistralidade</td><td>DASHBOARD</td><td>Uso: Atuária e Diretoria</td></tr>
+<tr><td>vw_ranking_corretor</td><td>Dashboard de Sinistralidade</td><td>DASHBOARD</td><td>Uso: Comercial</td></tr>
+<tr><td>vw_sinistralidade_produto</td><td>Relatório regulatório (ex.: FIP/SUSEP)</td><td>REGULATORIO</td><td>Prêmio ganho e sinistros retidos</td></tr>
+</tbody></table>
+<p><em>Gerado automaticamente a partir do repositório Git (pasta metadados/). Não edite aqui: altere o CSV e publique novamente.</em></p>

@@ -1,0 +1,26 @@
+<ac:structured-macro ac:name="info"><ac:rich-text-body><p>Termos de seguros explicados em linguagem simples para Atuária, Sinistros e Comercial.</p></ac:rich-text-body></ac:structured-macro>
+<ac:structured-macro ac:name="toc"><ac:parameter ac:name="maxLevel">2</ac:parameter></ac:structured-macro>
+<h2>Termos</h2><table><tbody>
+<tr><th>Termo</th><th>Definição</th><th>Exemplo</th><th>Área</th><th>Campos relacionados</th></tr>
+<tr><td>Apólice</td><td>Contrato de seguro emitido pela seguradora. Define quem está protegido, contra quais riscos, por quanto tempo e por qual preço.</td><td>A apólice AP100015 cobre uma empresa no Odonto Empresarial de 10/03/2025 a 10/03/2026.</td><td>Emissão</td><td>nr_apolice</td></tr>
+<tr><td>Segurado</td><td>Pessoa ou empresa protegida pela apólice. É um dado pessoal e tem acesso restrito pela LGPD.</td><td>SEG4521</td><td>Emissão</td><td>cd_segurado</td></tr>
+<tr><td>Produto</td><td>Tipo de seguro vendido, com regras e preço próprios.</td><td>Vida em Grupo, Odonto Empresarial, Residencial.</td><td>Atuária</td><td>cd_produto, ds_produto</td></tr>
+<tr><td>Vigência</td><td>Período em que a apólice está valendo e o segurado está coberto.</td><td>De 01/01/2026 a 01/01/2027.</td><td>Emissão</td><td>dt_inicio_vigencia, dt_fim_vigencia, qt_dias_vigencia</td></tr>
+<tr><td>Prêmio</td><td>Preço que o cliente paga pelo seguro. O prêmio líquido não inclui IOF.</td><td>R$ 1.200,00 por ano.</td><td>Atuária</td><td>vl_premio_liquido</td></tr>
+<tr><td>Endosso</td><td>Documento que altera uma apólice já emitida, como aumento de capital, redução ou cancelamento. Pode gerar cobrança ou devolução de prêmio.</td><td>Endosso de aumento de R$ 150,00 após inclusão de vidas.</td><td>Emissão</td><td>nr_endosso, tp_endosso, vl_premio_endosso</td></tr>
+<tr><td>Prêmio emitido</td><td>Prêmio original somado aos endossos de aumento e de redução.</td><td>R$ 1.200,00 + R$ 150,00 = R$ 1.350,00.</td><td>Atuária</td><td>vl_premio_emitido, vl_premio_liquido_final</td></tr>
+<tr><td>Prêmio ganho</td><td>Parte do prêmio que a seguradora já &quot;ganhou&quot; porque o tempo de cobertura já passou. Calculado proporcionalmente aos dias (pro rata die).</td><td>Apólice anual de R$ 1.200,00 com 6 meses decorridos: prêmio ganho de R$ 600,00.</td><td>Atuária</td><td>vl_premio_ganho, qt_dias_decorridos</td></tr>
+<tr><td>Cancelamento</td><td>Encerramento da apólice antes do fim da vigência. A cobertura termina na data do cancelamento.</td><td>Apólice cancelada em 30/06/2026.</td><td>Emissão</td><td>st_apolice, dt_cancelamento</td></tr>
+<tr><td>Restituição de prêmio</td><td>Valor devolvido ao cliente no cancelamento, referente aos dias de cobertura que não serão usados.</td><td>Cancelou na metade da vigência: devolve 50% do prêmio.</td><td>Atuária</td><td>vl_restituicao_cancelamento</td></tr>
+<tr><td>Corretor</td><td>Profissional ou empresa que intermedia a venda do seguro entre cliente e seguradora.</td><td>ALFA CORRETORA</td><td>Comercial</td><td>cd_corretor, nm_corretor</td></tr>
+<tr><td>Comissão</td><td>Remuneração do corretor, calculada como percentual do prêmio. É estornada proporcionalmente no cancelamento.</td><td>15% de R$ 1.000,00 = R$ 150,00.</td><td>Comercial</td><td>pc_comissao, vl_comissao</td></tr>
+<tr><td>Cosseguro</td><td>Divisão de um mesmo risco entre duas ou mais seguradoras. Prêmio e sinistro são divididos na mesma proporção.</td><td>30% cedido: de R$ 1.000,00 de prêmio, R$ 300,00 são da congênere.</td><td>Atuária</td><td>pc_cosseguro_cedido, vl_premio_cedido_cosseguro</td></tr>
+<tr><td>Prêmio retido</td><td>Parte do prêmio que fica com a seguradora depois de descontar o cosseguro cedido.</td><td>R$ 1.000,00 com 30% cedido: R$ 700,00 retido.</td><td>Atuária</td><td>vl_premio_ganho_retido</td></tr>
+<tr><td>Sinistro</td><td>Ocorrência do evento coberto pelo seguro que gera direito à indenização.</td><td>Falecimento coberto no Vida em Grupo, tratamento no Odonto.</td><td>Sinistros</td><td>nr_sinistro, dt_ocorrencia, st_sinistro, vl_sinistro_total</td></tr>
+<tr><td>Aviso de sinistro</td><td>Comunicação do sinistro à seguradora. A diferença entre ocorrência e aviso mostra a demora na comunicação.</td><td>Ocorreu em 01/05 e foi avisado em 10/05: 9 dias.</td><td>Sinistros</td><td>dt_aviso, qt_dias_ate_aviso</td></tr>
+<tr><td>Indenização</td><td>Valor pago ao segurado ou beneficiário por causa do sinistro.</td><td>R$ 8.000,00 pagos.</td><td>Sinistros</td><td>vl_indenizacao_paga</td></tr>
+<tr><td>Reserva de sinistro</td><td>Valor provisionado para sinistros já avisados que ainda não foram pagos.</td><td>Sinistro em análise com reserva de R$ 5.000,00.</td><td>Sinistros</td><td>vl_reserva_sinistro</td></tr>
+<tr><td>Sinistralidade</td><td>Indicador que mostra quanto do prêmio ganho foi consumido por sinistros. Acima de 100% o produto paga mais do que recebe.</td><td>R$ 650 de sinistros / R$ 1.000 de prêmio ganho = 65%.</td><td>Atuária</td><td>pc_sinistralidade</td></tr>
+<tr><td>Data de carga</td><td>Data técnica em que o registro chegou do sistema de origem. Não tem significado de negócio.</td><td>2026-11-02</td><td>Governança</td><td>dt_carga</td></tr>
+</tbody></table>
+<p><em>Gerado automaticamente a partir do repositório Git (pasta metadados/). Não edite aqui: altere o CSV e publique novamente.</em></p>

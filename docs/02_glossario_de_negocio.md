@@ -1,0 +1,30 @@
+# Glossário de negócio
+
+> Termos de seguros explicados em linguagem simples para Atuária, Sinistros e Comercial.
+
+_Arquivo gerado por `src/gerar_documentacao.py` — edite os CSVs em `metadados/`._
+
+## Termos
+
+| Termo | Definição | Exemplo | Área | Campos relacionados |
+|---|---|---|---|---|
+| Apólice | Contrato de seguro emitido pela seguradora. Define quem está protegido, contra quais riscos, por quanto tempo e por qual preço. | A apólice AP100015 cobre uma empresa no Odonto Empresarial de 10/03/2025 a 10/03/2026. | Emissão | nr_apolice |
+| Segurado | Pessoa ou empresa protegida pela apólice. É um dado pessoal e tem acesso restrito pela LGPD. | SEG4521 | Emissão | cd_segurado |
+| Produto | Tipo de seguro vendido, com regras e preço próprios. | Vida em Grupo, Odonto Empresarial, Residencial. | Atuária | cd_produto, ds_produto |
+| Vigência | Período em que a apólice está valendo e o segurado está coberto. | De 01/01/2026 a 01/01/2027. | Emissão | dt_inicio_vigencia, dt_fim_vigencia, qt_dias_vigencia |
+| Prêmio | Preço que o cliente paga pelo seguro. O prêmio líquido não inclui IOF. | R$ 1.200,00 por ano. | Atuária | vl_premio_liquido |
+| Endosso | Documento que altera uma apólice já emitida, como aumento de capital, redução ou cancelamento. Pode gerar cobrança ou devolução de prêmio. | Endosso de aumento de R$ 150,00 após inclusão de vidas. | Emissão | nr_endosso, tp_endosso, vl_premio_endosso |
+| Prêmio emitido | Prêmio original somado aos endossos de aumento e de redução. | R$ 1.200,00 + R$ 150,00 = R$ 1.350,00. | Atuária | vl_premio_emitido, vl_premio_liquido_final |
+| Prêmio ganho | Parte do prêmio que a seguradora já "ganhou" porque o tempo de cobertura já passou. Calculado proporcionalmente aos dias (pro rata die). | Apólice anual de R$ 1.200,00 com 6 meses decorridos: prêmio ganho de R$ 600,00. | Atuária | vl_premio_ganho, qt_dias_decorridos |
+| Cancelamento | Encerramento da apólice antes do fim da vigência. A cobertura termina na data do cancelamento. | Apólice cancelada em 30/06/2026. | Emissão | st_apolice, dt_cancelamento |
+| Restituição de prêmio | Valor devolvido ao cliente no cancelamento, referente aos dias de cobertura que não serão usados. | Cancelou na metade da vigência: devolve 50% do prêmio. | Atuária | vl_restituicao_cancelamento |
+| Corretor | Profissional ou empresa que intermedia a venda do seguro entre cliente e seguradora. | ALFA CORRETORA | Comercial | cd_corretor, nm_corretor |
+| Comissão | Remuneração do corretor, calculada como percentual do prêmio. É estornada proporcionalmente no cancelamento. | 15% de R$ 1.000,00 = R$ 150,00. | Comercial | pc_comissao, vl_comissao |
+| Cosseguro | Divisão de um mesmo risco entre duas ou mais seguradoras. Prêmio e sinistro são divididos na mesma proporção. | 30% cedido: de R$ 1.000,00 de prêmio, R$ 300,00 são da congênere. | Atuária | pc_cosseguro_cedido, vl_premio_cedido_cosseguro |
+| Prêmio retido | Parte do prêmio que fica com a seguradora depois de descontar o cosseguro cedido. | R$ 1.000,00 com 30% cedido: R$ 700,00 retido. | Atuária | vl_premio_ganho_retido |
+| Sinistro | Ocorrência do evento coberto pelo seguro que gera direito à indenização. | Falecimento coberto no Vida em Grupo, tratamento no Odonto. | Sinistros | nr_sinistro, dt_ocorrencia, st_sinistro, vl_sinistro_total |
+| Aviso de sinistro | Comunicação do sinistro à seguradora. A diferença entre ocorrência e aviso mostra a demora na comunicação. | Ocorreu em 01/05 e foi avisado em 10/05: 9 dias. | Sinistros | dt_aviso, qt_dias_ate_aviso |
+| Indenização | Valor pago ao segurado ou beneficiário por causa do sinistro. | R$ 8.000,00 pagos. | Sinistros | vl_indenizacao_paga |
+| Reserva de sinistro | Valor provisionado para sinistros já avisados que ainda não foram pagos. | Sinistro em análise com reserva de R$ 5.000,00. | Sinistros | vl_reserva_sinistro |
+| Sinistralidade | Indicador que mostra quanto do prêmio ganho foi consumido por sinistros. Acima de 100% o produto paga mais do que recebe. | R$ 650 de sinistros / R$ 1.000 de prêmio ganho = 65%. | Atuária | pc_sinistralidade |
+| Data de carga | Data técnica em que o registro chegou do sistema de origem. Não tem significado de negócio. | 2026-11-02 | Governança | dt_carga |

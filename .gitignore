@@ -1,0 +1,7 @@
+# Banco SQLite é recriado a cada execução (python main.py)
+data/seguros.db
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store

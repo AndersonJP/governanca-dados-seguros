@@ -1,0 +1,33 @@
+{
+  "pagina_pai": "Governança de Dados — Seguros",
+  "paginas": [
+    {
+      "arquivo": "01_visao_geral.xhtml",
+      "titulo": "Visão geral"
+    },
+    {
+      "arquivo": "02_glossario_de_negocio.xhtml",
+      "titulo": "Glossário de negócio"
+    },
+    {
+      "arquivo": "03_catalogo_de_regras_de_negocio.xhtml",
+      "titulo": "Catálogo de regras de negócio"
+    },
+    {
+      "arquivo": "04_dicionario_de_dados.xhtml",
+      "titulo": "Dicionário de dados"
+    },
+    {
+      "arquivo": "05_de_x_para_origem_modelo.xhtml",
+      "titulo": "De x Para (origem -> modelo)"
+    },
+    {
+      "arquivo": "06_linhagem_de_dados.xhtml",
+      "titulo": "Linhagem de dados"
+    },
+    {
+      "arquivo": "07_qualidade_de_dados.xhtml",
+      "titulo": "Qualidade de dados"
+    }
+  ]
+}

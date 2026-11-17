@@ -1,0 +1,34 @@
+<ac:structured-macro ac:name="info"><ac:rich-text-body><p>Mapeamento campo a campo do sistema de emissão SISEG para a camada Silver.</p></ac:rich-text-body></ac:structured-macro>
+<ac:structured-macro ac:name="toc"><ac:parameter ac:name="maxLevel">2</ac:parameter></ac:structured-macro>
+<h2>Mapeamento</h2><table><tbody>
+<tr><th>Tabela origem</th><th>Coluna origem</th><th>Tabela destino</th><th>Coluna destino</th><th>Tipo destino</th><th>Transformação</th></tr>
+<tr><td>TB_PROD</td><td>CD_PROD</td><td>silver_produto</td><td>cd_produto</td><td>INTEGER</td><td>Conversão para inteiro</td></tr>
+<tr><td>TB_PROD</td><td>DS_PROD</td><td>silver_produto</td><td>ds_produto</td><td>TEXT</td><td>Cópia direta</td></tr>
+<tr><td>TB_CORR</td><td>CD_CORR</td><td>silver_corretor</td><td>cd_corretor</td><td>INTEGER</td><td>Conversão para inteiro</td></tr>
+<tr><td>TB_CORR</td><td>NM_CORR</td><td>silver_corretor</td><td>nm_corretor</td><td>TEXT</td><td>Cópia direta</td></tr>
+<tr><td>TB_CORR</td><td>PC_COMS</td><td>silver_corretor</td><td>pc_comissao</td><td>REAL</td><td>Conversão para decimal (0 a 1)</td></tr>
+<tr><td>TB_APOL</td><td>NR_APOL</td><td>silver_apolice</td><td>nr_apolice</td><td>TEXT</td><td>Cópia direta, com deduplicação por ROW_NUMBER mantendo a maior DT_CARGA</td></tr>
+<tr><td>TB_APOL</td><td>CD_PROD</td><td>silver_apolice</td><td>cd_produto</td><td>INTEGER</td><td>Conversão para inteiro</td></tr>
+<tr><td>TB_APOL</td><td>CD_CORR</td><td>silver_apolice</td><td>cd_corretor</td><td>INTEGER</td><td>Conversão para inteiro</td></tr>
+<tr><td>TB_APOL</td><td>CD_SEGD</td><td>silver_apolice</td><td>cd_segurado</td><td>TEXT</td><td>Cópia direta (dado pessoal: classificar como PESSOAL)</td></tr>
+<tr><td>TB_APOL</td><td>DT_INI_VIG</td><td>silver_apolice</td><td>dt_inicio_vigencia</td><td>DATE</td><td>Conversão para data</td></tr>
+<tr><td>TB_APOL</td><td>DT_FIM_VIG</td><td>silver_apolice</td><td>dt_fim_vigencia</td><td>DATE</td><td>Conversão para data</td></tr>
+<tr><td>TB_APOL</td><td>VL_PRM_LIQ</td><td>silver_apolice</td><td>vl_premio_liquido</td><td>REAL</td><td>Conversão para decimal</td></tr>
+<tr><td>TB_APOL</td><td>ST_APOL</td><td>silver_apolice</td><td>st_apolice</td><td>TEXT</td><td>Decodificação: A = ATIVA, C = CANCELADA</td></tr>
+<tr><td>TB_APOL</td><td>DT_CANC</td><td>silver_apolice</td><td>dt_cancelamento</td><td>DATE</td><td>Texto vazio vira NULL</td></tr>
+<tr><td>TB_APOL</td><td>PC_COSS_CED</td><td>silver_apolice</td><td>pc_cosseguro_cedido</td><td>REAL</td><td>Conversão para decimal (0 a 1)</td></tr>
+<tr><td>TB_APOL</td><td>DT_CARGA</td><td>silver_apolice</td><td>dt_carga</td><td>DATE</td><td>Conversão para data</td></tr>
+<tr><td>TB_ENDS</td><td>NR_ENDS</td><td>silver_endosso</td><td>nr_endosso</td><td>TEXT</td><td>Cópia direta</td></tr>
+<tr><td>TB_ENDS</td><td>NR_APOL</td><td>silver_endosso</td><td>nr_apolice</td><td>TEXT</td><td>Cópia direta</td></tr>
+<tr><td>TB_ENDS</td><td>TP_ENDS</td><td>silver_endosso</td><td>tp_endosso</td><td>TEXT</td><td>Decodificação: AUM = AUMENTO, RED = REDUCAO, CAN = CANCELAMENTO</td></tr>
+<tr><td>TB_ENDS</td><td>DT_EMIS</td><td>silver_endosso</td><td>dt_emissao</td><td>DATE</td><td>Conversão para data</td></tr>
+<tr><td>TB_ENDS</td><td>VL_PRM_ENDS</td><td>silver_endosso</td><td>vl_premio_endosso</td><td>REAL</td><td>Conversão para decimal</td></tr>
+<tr><td>TB_SINI</td><td>NR_SINI</td><td>silver_sinistro</td><td>nr_sinistro</td><td>TEXT</td><td>Cópia direta</td></tr>
+<tr><td>TB_SINI</td><td>NR_APOL</td><td>silver_sinistro</td><td>nr_apolice</td><td>TEXT</td><td>Cópia direta</td></tr>
+<tr><td>TB_SINI</td><td>DT_OCOR</td><td>silver_sinistro</td><td>dt_ocorrencia</td><td>DATE</td><td>Conversão para data</td></tr>
+<tr><td>TB_SINI</td><td>DT_AVIS</td><td>silver_sinistro</td><td>dt_aviso</td><td>DATE</td><td>Conversão para data</td></tr>
+<tr><td>TB_SINI</td><td>VL_INDE</td><td>silver_sinistro</td><td>vl_indenizacao_paga</td><td>REAL</td><td>Conversão para decimal</td></tr>
+<tr><td>TB_SINI</td><td>VL_RESV</td><td>silver_sinistro</td><td>vl_reserva_sinistro</td><td>REAL</td><td>Conversão para decimal</td></tr>
+<tr><td>TB_SINI</td><td>ST_SINI</td><td>silver_sinistro</td><td>st_sinistro</td><td>TEXT</td><td>Cópia direta</td></tr>
+</tbody></table>
+<p><em>Gerado automaticamente a partir do repositório Git (pasta metadados/). Não edite aqui: altere o CSV e publique novamente.</em></p>

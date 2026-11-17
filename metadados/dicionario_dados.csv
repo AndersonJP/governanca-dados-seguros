@@ -1,0 +1,77 @@
+camada;tabela;coluna;tipo_dado;chave;referencia;descricao;termo_glossario;regra;classificacao;dono_dado;status
+SILVER;silver_apolice;nr_apolice;TEXT;PK;;Número da apólice, identificador único do contrato de seguro.;Apólice;;INTERNA;Emissão;APROVADO
+SILVER;silver_apolice;cd_produto;INTEGER;FK;silver_produto.cd_produto;Código do produto de seguro (ex.: 103 = Odonto Empresarial).;Produto;;INTERNA;Atuária;APROVADO
+SILVER;silver_apolice;cd_corretor;INTEGER;FK;silver_corretor.cd_corretor;Código do corretor que intermediou a venda da apólice.;Corretor;;INTERNA;Comercial;APROVADO
+SILVER;silver_apolice;cd_segurado;TEXT;;;Código do segurado (pessoa/empresa protegida). Dado pessoal: acesso restrito (LGPD).;Segurado;;PESSOAL;Emissão;APROVADO
+SILVER;silver_apolice;dt_inicio_vigencia;DATE;;;Data em que a cobertura da apólice começa a valer.;Vigência;;INTERNA;Emissão;APROVADO
+SILVER;silver_apolice;dt_fim_vigencia;DATE;;;Data em que a cobertura da apólice termina.;Vigência;;INTERNA;Emissão;APROVADO
+SILVER;silver_apolice;vl_premio_liquido;REAL;;;Prêmio original da apólice em R$, sem IOF, na emissão.;Prêmio;;CONFIDENCIAL;Atuária;APROVADO
+SILVER;silver_apolice;st_apolice;TEXT;;;Situação da apólice: ATIVA ou CANCELADA.;Cancelamento;RN03;INTERNA;Emissão;APROVADO
+SILVER;silver_apolice;dt_cancelamento;DATE;;;Data do cancelamento. Vazio quando a apólice não foi cancelada.;Cancelamento;RN03;INTERNA;Emissão;APROVADO
+SILVER;silver_apolice;pc_cosseguro_cedido;REAL;;;Parcela do risco (0 a 1) dividida com outra seguradora (congênere).;Cosseguro;RN05;CONFIDENCIAL;Atuária;APROVADO
+SILVER;silver_apolice;dt_carga;DATE;;;Data em que o registro foi carregado do sistema de origem. Usada para deduplicar.;Data de carga;;INTERNA;Governança;APROVADO
+SILVER;silver_corretor;cd_corretor;INTEGER;PK;;Código do corretor que intermediou a venda da apólice.;Corretor;;INTERNA;Comercial;APROVADO
+SILVER;silver_corretor;nm_corretor;TEXT;;;Razão social da corretora.;Corretor;;INTERNA;Comercial;APROVADO
+SILVER;silver_corretor;pc_comissao;REAL;;;Percentual de comissão (corretagem) pago ao corretor sobre o prêmio, de 0 a 1.;Comissão;RN04;CONFIDENCIAL;Comercial;APROVADO
+SILVER;silver_endosso;nr_endosso;TEXT;PK;;Número do endosso, identificador único da alteração na apólice.;Endosso;;INTERNA;Emissão;APROVADO
+SILVER;silver_endosso;nr_apolice;TEXT;FK;silver_apolice.nr_apolice;Número da apólice, identificador único do contrato de seguro.;Apólice;;INTERNA;Emissão;APROVADO
+SILVER;silver_endosso;tp_endosso;TEXT;;;Tipo de endosso: AUMENTO, REDUCAO ou CANCELAMENTO.;Endosso;RN01;INTERNA;Emissão;APROVADO
+SILVER;silver_endosso;dt_emissao;DATE;;;Data de emissão do endosso.;Endosso;;INTERNA;Emissão;APROVADO
+SILVER;silver_endosso;vl_premio_endosso;REAL;;;Variação de prêmio gerada pelo endosso em R$ (negativo na redução).;Endosso;RN01;CONFIDENCIAL;Atuária;APROVADO
+SILVER;silver_produto;cd_produto;INTEGER;PK;;Código do produto de seguro (ex.: 103 = Odonto Empresarial).;Produto;;INTERNA;Atuária;APROVADO
+SILVER;silver_produto;ds_produto;TEXT;;;Nome comercial do produto de seguro.;Produto;;PUBLICA;Atuária;APROVADO
+SILVER;silver_sinistro;nr_sinistro;TEXT;PK;;Número do sinistro, identificador único do evento indenizável.;Sinistro;;INTERNA;Sinistros;APROVADO
+SILVER;silver_sinistro;nr_apolice;TEXT;FK;silver_apolice.nr_apolice;Número da apólice, identificador único do contrato de seguro.;Apólice;;INTERNA;Emissão;APROVADO
+SILVER;silver_sinistro;dt_ocorrencia;DATE;;;Data em que o evento (sinistro) aconteceu.;Sinistro;RN07;INTERNA;Sinistros;APROVADO
+SILVER;silver_sinistro;dt_aviso;DATE;;;Data em que a seguradora foi avisada do sinistro.;Aviso de sinistro;;INTERNA;Sinistros;APROVADO
+SILVER;silver_sinistro;vl_indenizacao_paga;REAL;;;Valor já pago ao segurado/beneficiário em R$.;Indenização;RN06;CONFIDENCIAL;Sinistros;APROVADO
+SILVER;silver_sinistro;vl_reserva_sinistro;REAL;;;Valor provisionado para sinistros avisados e ainda não pagos em R$.;Reserva de sinistro;RN06;CONFIDENCIAL;Sinistros;APROVADO
+SILVER;silver_sinistro;st_sinistro;TEXT;;;Situação do sinistro: PAGO ou ABERTO.;Sinistro;;INTERNA;Sinistros;APROVADO
+GOLD;dim_corretor;cd_corretor;INTEGER;PK;;Código do corretor que intermediou a venda da apólice.;Corretor;;INTERNA;Comercial;APROVADO
+GOLD;dim_corretor;nm_corretor;TEXT;;;Razão social da corretora.;Corretor;;INTERNA;Comercial;APROVADO
+GOLD;dim_corretor;pc_comissao;REAL;;;Percentual de comissão (corretagem) pago ao corretor sobre o prêmio, de 0 a 1.;Comissão;RN04;CONFIDENCIAL;Comercial;APROVADO
+GOLD;dim_produto;cd_produto;INTEGER;PK;;Código do produto de seguro (ex.: 103 = Odonto Empresarial).;Produto;;INTERNA;Atuária;APROVADO
+GOLD;dim_produto;ds_produto;TEXT;;;Nome comercial do produto de seguro.;Produto;;PUBLICA;Atuária;APROVADO
+GOLD;fato_premio;nr_apolice;TEXT;PK;;Número da apólice, identificador único do contrato de seguro.;Apólice;;INTERNA;Emissão;APROVADO
+GOLD;fato_premio;cd_produto;INTEGER;FK;dim_produto.cd_produto;Código do produto de seguro (ex.: 103 = Odonto Empresarial).;Produto;;INTERNA;Atuária;APROVADO
+GOLD;fato_premio;cd_corretor;INTEGER;FK;dim_corretor.cd_corretor;Código do corretor que intermediou a venda da apólice.;Corretor;;INTERNA;Comercial;APROVADO
+GOLD;fato_premio;dt_inicio_vigencia;DATE;;;Data em que a cobertura da apólice começa a valer.;Vigência;;INTERNA;Emissão;APROVADO
+GOLD;fato_premio;st_apolice;TEXT;;;Situação da apólice: ATIVA ou CANCELADA.;Cancelamento;RN03;INTERNA;Emissão;APROVADO
+GOLD;fato_premio;qt_dias_vigencia;INTEGER;;;Quantidade de dias entre início e fim de vigência.;Vigência;RN02;INTERNA;Atuária;APROVADO
+GOLD;fato_premio;qt_dias_decorridos;INTEGER;;;Dias de exposição ao risco já transcorridos até a data base, cancelamento ou fim da vigência.;Prêmio ganho;RN02;INTERNA;Atuária;APROVADO
+GOLD;fato_premio;vl_premio_emitido;REAL;;;Prêmio original + endossos de aumento/redução, em R$.;Prêmio emitido;RN01;CONFIDENCIAL;Atuária;APROVADO
+GOLD;fato_premio;vl_premio_ganho;REAL;;;"Parte do prêmio já ""ganha"" pela seguradora, proporcional aos dias decorridos (pro rata die).";Prêmio ganho;RN02;CONFIDENCIAL;Atuária;APROVADO
+GOLD;fato_premio;vl_restituicao_cancelamento;REAL;;;Prêmio devolvido no cancelamento, referente aos dias não decorridos (valor negativo).;Restituição de prêmio;RN03;CONFIDENCIAL;Atuária;APROVADO
+GOLD;fato_premio;vl_premio_liquido_final;REAL;;;Prêmio emitido após a restituição de cancelamento, em R$.;Prêmio emitido;RN03;CONFIDENCIAL;Atuária;APROVADO
+GOLD;fato_premio;vl_comissao;REAL;;;Comissão devida ao corretor, em R$.;Comissão;RN04;CONFIDENCIAL;Comercial;APROVADO
+GOLD;fato_premio;vl_premio_cedido_cosseguro;REAL;;;Parte do prêmio que pertence à congênere no cosseguro, em R$.;Cosseguro;RN05;CONFIDENCIAL;Atuária;APROVADO
+GOLD;fato_premio;vl_premio_ganho_retido;REAL;;;Prêmio ganho que fica com a seguradora após o cosseguro, em R$.;Prêmio retido;RN05;CONFIDENCIAL;Atuária;APROVADO
+GOLD;fato_sinistro;nr_sinistro;TEXT;PK;;Número do sinistro, identificador único do evento indenizável.;Sinistro;;INTERNA;Sinistros;APROVADO
+GOLD;fato_sinistro;nr_apolice;TEXT;FK;fato_premio.nr_apolice;Número da apólice, identificador único do contrato de seguro.;Apólice;;INTERNA;Emissão;APROVADO
+GOLD;fato_sinistro;cd_produto;INTEGER;FK;dim_produto.cd_produto;Código do produto de seguro (ex.: 103 = Odonto Empresarial).;Produto;;INTERNA;Atuária;APROVADO
+GOLD;fato_sinistro;dt_ocorrencia;DATE;;;Data em que o evento (sinistro) aconteceu.;Sinistro;RN07;INTERNA;Sinistros;APROVADO
+GOLD;fato_sinistro;qt_dias_ate_aviso;INTEGER;;;Dias entre a ocorrência e o aviso do sinistro.;Aviso de sinistro;;INTERNA;Sinistros;APROVADO
+GOLD;fato_sinistro;st_sinistro;TEXT;;;Situação do sinistro: PAGO ou ABERTO.;Sinistro;;INTERNA;Sinistros;APROVADO
+GOLD;fato_sinistro;vl_sinistro_total;REAL;;;Indenização paga + reserva, em R$ (custo total do sinistro).;Sinistro;RN06;CONFIDENCIAL;Sinistros;APROVADO
+GOLD;fato_sinistro;vl_sinistro_retido;REAL;;;Custo do sinistro que fica com a seguradora após o cosseguro, em R$.;Sinistro;RN05;CONFIDENCIAL;Sinistros;APROVADO
+GOLD;fato_sinistro;fl_ocorrencia_na_vigencia;INTEGER;;;1 = sinistro ocorreu dentro da vigência (coberto), 0 = fora (não entra na sinistralidade).;Vigência;RN07;INTERNA;Sinistros;APROVADO
+CONSUMO;vw_premio_mensal;aa_mes;TEXT;;;Ano-mês de início de vigência (AAAA-MM).;Vigência;;INTERNA;Atuária;APROVADO
+CONSUMO;vw_premio_mensal;qt_apolices;INTEGER;;;Quantidade de apólices.;Apólice;;INTERNA;Atuária;APROVADO
+CONSUMO;vw_premio_mensal;vl_premio_emitido;REAL;;;Prêmio original + endossos de aumento/redução, em R$.;Prêmio emitido;RN01;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_premio_mensal;vl_mes_anterior;REAL;;;Prêmio emitido do mês anterior (função LAG).;Prêmio emitido;RN01;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_premio_mensal;pc_variacao_mes;REAL;;;Variação do prêmio emitido contra o mês anterior.;Prêmio emitido;RN01;INTERNA;Atuária;APROVADO
+CONSUMO;vw_premio_mensal;vl_acumulado;REAL;;;Prêmio emitido acumulado desde o primeiro mês (SUM OVER).;Prêmio emitido;RN01;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_ranking_corretor;nm_corretor;TEXT;;;Razão social da corretora.;Corretor;;INTERNA;Comercial;APROVADO
+CONSUMO;vw_ranking_corretor;qt_apolices;INTEGER;;;Quantidade de apólices.;Apólice;;INTERNA;Atuária;APROVADO
+CONSUMO;vw_ranking_corretor;vl_premio_liquido_final;REAL;;;Prêmio emitido após a restituição de cancelamento, em R$.;Prêmio emitido;RN03;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_ranking_corretor;vl_comissao;REAL;;;Comissão devida ao corretor, em R$.;Comissão;RN04;CONFIDENCIAL;Comercial;APROVADO
+CONSUMO;vw_ranking_corretor;pc_participacao;REAL;;;Participação do corretor no prêmio líquido total da carteira.;Corretor;RN04;INTERNA;Comercial;APROVADO
+CONSUMO;vw_ranking_corretor;nr_ranking;INTEGER;;;Posição do corretor no ranking de prêmio líquido (1 = maior).;Corretor;;INTERNA;Comercial;APROVADO
+CONSUMO;vw_sinistralidade_produto;ds_produto;TEXT;;;Nome comercial do produto de seguro.;Produto;;PUBLICA;Atuária;APROVADO
+CONSUMO;vw_sinistralidade_produto;qt_apolices;INTEGER;;;Quantidade de apólices.;Apólice;;INTERNA;Atuária;APROVADO
+CONSUMO;vw_sinistralidade_produto;qt_sinistros;INTEGER;;;Quantidade de sinistros cobertos.;Sinistro;RN07;INTERNA;Sinistros;APROVADO
+CONSUMO;vw_sinistralidade_produto;vl_premio_emitido;REAL;;;Prêmio original + endossos de aumento/redução, em R$.;Prêmio emitido;RN01;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_sinistralidade_produto;vl_premio_ganho_retido;REAL;;;Prêmio ganho que fica com a seguradora após o cosseguro, em R$.;Prêmio retido;RN05;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_sinistralidade_produto;vl_sinistro_retido;REAL;;;Custo do sinistro que fica com a seguradora após o cosseguro, em R$.;Sinistro;RN05;CONFIDENCIAL;Sinistros;APROVADO
+CONSUMO;vw_sinistralidade_produto;pc_sinistralidade;REAL;;;Sinistralidade: custo de sinistros retido dividido pelo prêmio ganho retido (0,65 = 65%).;Sinistralidade;RN06;CONFIDENCIAL;Atuária;APROVADO
+CONSUMO;vw_sinistralidade_produto;nr_ranking_sinistralidade;INTEGER;;;Posição do produto no ranking de sinistralidade (1 = maior).;Sinistralidade;RN06;INTERNA;Atuária;APROVADO

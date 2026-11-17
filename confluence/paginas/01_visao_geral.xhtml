@@ -1,0 +1,26 @@
+<ac:structured-macro ac:name="info"><ac:rich-text-body><p>Biblioteca de dados dos produtos de seguro: o que existe, o que significa, de onde vem e quem é o dono. Fonte única da verdade: pasta metadados/ no Git.</p></ac:rich-text-body></ac:structured-macro>
+<ac:structured-macro ac:name="toc"><ac:parameter ac:name="maxLevel">2</ac:parameter></ac:structured-macro>
+<h2>Tabelas documentadas</h2><table><tbody>
+<tr><th>Tabela</th><th>Camada</th><th>Descrição</th><th>Grão</th><th>Dono</th></tr>
+<tr><td>silver_produto</td><td>SILVER</td><td>Cadastro de produtos de seguro com nomes padronizados.</td><td>1 linha por produto</td><td>Atuária</td></tr>
+<tr><td>silver_corretor</td><td>SILVER</td><td>Cadastro de corretores e percentual de comissão.</td><td>1 linha por corretor</td><td>Comercial</td></tr>
+<tr><td>silver_apolice</td><td>SILVER</td><td>Apólices do sistema de emissão, tipadas e sem duplicatas de carga.</td><td>1 linha por apólice</td><td>Emissão</td></tr>
+<tr><td>silver_endosso</td><td>SILVER</td><td>Endossos (alterações) das apólices.</td><td>1 linha por endosso</td><td>Emissão</td></tr>
+<tr><td>silver_sinistro</td><td>SILVER</td><td>Sinistros avisados, com indenização paga e reserva.</td><td>1 linha por sinistro</td><td>Sinistros</td></tr>
+<tr><td>dim_produto</td><td>GOLD</td><td>Dimensão de produtos para análises.</td><td>1 linha por produto</td><td>Atuária</td></tr>
+<tr><td>dim_corretor</td><td>GOLD</td><td>Dimensão de corretores para análises comerciais.</td><td>1 linha por corretor</td><td>Comercial</td></tr>
+<tr><td>fato_premio</td><td>GOLD</td><td>Fato de prêmios com as regras de prêmio emitido, ganho, restituição, comissão e cosseguro (RN01 a RN05).</td><td>1 linha por apólice</td><td>Atuária</td></tr>
+<tr><td>fato_sinistro</td><td>GOLD</td><td>Fato de sinistros com custo total, parte retida e cobertura pela vigência (RN05 a RN07).</td><td>1 linha por sinistro</td><td>Sinistros</td></tr>
+<tr><td>vw_sinistralidade_produto</td><td>CONSUMO</td><td>Sinistralidade por produto com ranking (RN06).</td><td>1 linha por produto</td><td>Atuária</td></tr>
+<tr><td>vw_premio_mensal</td><td>CONSUMO</td><td>Evolução mensal do prêmio emitido com variação e acumulado.</td><td>1 linha por mês</td><td>Atuária</td></tr>
+<tr><td>vw_ranking_corretor</td><td>CONSUMO</td><td>Ranking de corretores por prêmio líquido e comissão.</td><td>1 linha por corretor</td><td>Comercial</td></tr>
+</tbody></table>
+<h2>Números da documentação</h2><table><tbody>
+<tr><th>Item</th><th>Quantidade</th></tr>
+<tr><td>Tabelas</td><td>12</td></tr>
+<tr><td>Colunas no dicionário</td><td>76</td></tr>
+<tr><td>Termos no glossário</td><td>20</td></tr>
+<tr><td>Regras de negócio</td><td>7</td></tr>
+<tr><td>Mapeamentos De x Para</td><td>28</td></tr>
+</tbody></table>
+<p><em>Gerado automaticamente a partir do repositório Git (pasta metadados/). Não edite aqui: altere o CSV e publique novamente.</em></p>
